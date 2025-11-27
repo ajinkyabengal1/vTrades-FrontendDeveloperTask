@@ -1,19 +1,25 @@
+"use client";
 
-import {HomeLayout} from '../components/HomeLayout';
+import { useState } from "react";
+import { HomeLayout } from "@/components/HomeLayout";
+import { SignInForm } from "@/components/SignInForm";
 
 
-export default function Home() {
+type View = "signin" | "signup" | "forgot" | "otp" | "newpass" | "passcreated";
+
+export default function Page() {
+  const [view, setView] = useState<View>("signin");
+
   return (
-   
-  
-
     <HomeLayout>
-      <div>
-        <h1 className="text-3xl font-bold underline">
-        Work Hive app AJINKYA!
-    </h1>
-      </div>
-     
+      {view === "signin" && (
+        <SignInForm
+          onForgotPassword={() => setView("forgot")}
+          onSwitchToSignUp={() => setView("signup")}
+        />
+      )}
+
+      
     </HomeLayout>
   );
 }
