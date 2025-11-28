@@ -9,19 +9,15 @@ import { OtpForm } from "@/components/OtpForm";
 import { NewPassForm } from "@/components/NewPassForm";
 import { SignUpForm } from "@/components/SignUpForm";
 
-
-
-
-
-
 type View = "signin" | "signup" | "forgot" | "otp" | "newpass" | "passcreated";
 
 export default function Page() {
   const [view, setView] = useState<View>("signin");
-   const [showSignInSuccessModal, setShowSignInSuccessModal] = useState(false);
-     const [showLinkSentModal, setShowLinkSentModal] = useState(false);
+  const [showSignInSuccessModal, setShowSignInSuccessModal] = useState(false);
+  const [showLinkSentModal, setShowLinkSentModal] = useState(false);
   const [showPasswordCreatedModal, setShowPasswordCreatedModal] =
     useState(false);
+  const [showSignUpSuccessModal, setShowSignUpSuccessModal] = useState(false);
 
   return (
     <HomeLayout>
@@ -29,12 +25,15 @@ export default function Page() {
         <SignInForm
           onForgotPassword={() => setView("forgot")}
           onSwitchToSignUp={() => setView("signup")}
-           onSuccess={() => setShowSignInSuccessModal(true)}
+          onSuccess={() => setShowSignInSuccessModal(true)}
         />
       )}
 
       {view === "signup" && (
-        <SignUpForm onSwitchToSignIn={() => setView("signin")} />
+        <SignUpForm
+          onSwitchToSignIn={() => setView("signin")}
+          onSuccess={() => setShowSignUpSuccessModal(true)}
+        />
       )}
 
       {view === "forgot" && (
@@ -86,7 +85,7 @@ export default function Page() {
         />
       )}
 
-{/* confirm pass modal */}
+      {/* confirm pass modal */}
       {showPasswordCreatedModal && (
         <StatusModal
           icon="success"
@@ -100,7 +99,19 @@ export default function Page() {
         />
       )}
 
-      
+      {/* Sign up sucess modal */}
+      {showSignUpSuccessModal && (
+        <StatusModal
+          icon="success"
+          title="Account Created Successfully!"
+          message="Your account has been created. You can now sign in using your credentials."
+          buttonLabel="Go to Sign In"
+          onClose={() => {
+            setShowSignUpSuccessModal(false);
+            setView("signin");
+          }}
+        />
+      )}
     </HomeLayout>
   );
 }

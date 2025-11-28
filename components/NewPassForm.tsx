@@ -14,6 +14,7 @@ export function NewPassForm({ onSuccess }: Props) {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
+  // function for submit new pass form
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     setError(null);
@@ -95,7 +96,7 @@ export function NewPassForm({ onSuccess }: Props) {
               className="absolute inset-y-0 right-3 text-xs text-gray-400"
             >
               <span className="material-symbols-outlined text-xs">
-                {showPassword ? "visibility" : "visibility_off"}
+                {showConfirm ? "visibility" : "visibility_off"}
               </span>
             </button>
           </div>

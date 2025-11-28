@@ -4,9 +4,10 @@ import { FormEvent, useState } from "react";
 
 interface Props {
   onSwitchToSignIn: () => void;
+  onSuccess: () => void;
 }
 
-export function SignUpForm({ onSwitchToSignIn }: Props) {
+export function SignUpForm({ onSwitchToSignIn, onSuccess }: Props) {
   const [email, setEmail] = useState("navinash@workhive.com");
   const [password, setPassword] = useState("Workhiveadmin");
   const [confirm, setConfirm] = useState("Workhiveadmin");
@@ -15,6 +16,7 @@ export function SignUpForm({ onSwitchToSignIn }: Props) {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
+  // function for submit sign up form
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     setError(null);
@@ -30,9 +32,9 @@ export function SignUpForm({ onSwitchToSignIn }: Props) {
 
     setLoading(true);
     setTimeout(() => {
-      alert("Sign up success (mock). Now use Sign In.");
       setLoading(false);
       onSwitchToSignIn();
+      onSuccess();
     }, 700);
   };
 
@@ -73,7 +75,9 @@ export function SignUpForm({ onSwitchToSignIn }: Props) {
               onClick={() => setShowPassword((p) => !p)}
               className="absolute inset-y-0 right-3 text-xs text-gray-400"
             >
-              {showPassword ? "visibility" : "visibility_off"}
+              <span className="material-symbols-outlined text-xs">
+                {showPassword ? "visibility" : "visibility_off"}
+              </span>
             </button>
           </div>
         </div>
@@ -92,7 +96,9 @@ export function SignUpForm({ onSwitchToSignIn }: Props) {
               onClick={() => setShowConfirm((p) => !p)}
               className="absolute inset-y-0 right-3 text-xs text-gray-400"
             >
-              {showConfirm ? "Hide" : "Show"}
+              <span className="material-symbols-outlined text-xs">
+                {showConfirm ? "visibility" : "visibility_off"}
+              </span>
             </button>
           </div>
         </div>
