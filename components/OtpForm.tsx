@@ -2,7 +2,6 @@
 
 import { FormEvent, useEffect, useRef, useState } from "react";
 
-
 interface Props {
   onSuccess: () => void;
 }
@@ -21,7 +20,6 @@ export function OtpForm({ onSuccess }: Props) {
     alert("Your OTP is 123456");
   }, []);
 
-
   // on otp submit function
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -34,15 +32,14 @@ export function OtpForm({ onSuccess }: Props) {
 
     setLoading(true);
     setTimeout(() => {
-      if (otp === OTP){
-        onSuccess();      
-      }
-      else setError("Incorrect OTP. Please try again.");
+      if (otp === OTP) {
+        onSuccess();
+      } else setError("Incorrect OTP. Please try again.");
       setLoading(false);
     }, 700);
   };
 
-   // on Resend otp submit function
+  // on Resend otp submit function
   const handleResend = () => alert("OTP resent.");
 
   return (
@@ -60,7 +57,11 @@ export function OtpForm({ onSuccess }: Props) {
             <input
               key={index}
               maxLength={1}
-              ref={(el) => (inputRefs.current[index] = el)}
+              ref={(el) => {
+                if (inputRefs.current) {
+                  inputRefs.current[index] = el;
+                }
+              }}
               className="w-10 h-12 rounded-md bg-[#181824] border border-gray-700 text-center text-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
               value={otp[index] ?? ""}
               onChange={(e) => {

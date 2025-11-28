@@ -9,7 +9,13 @@ import { OtpForm } from "@/components/OtpForm";
 import { NewPassForm } from "@/components/NewPassForm";
 import { SignUpForm } from "@/components/SignUpForm";
 
-type View = "signin" | "signup" | "forgot" | "otp" | "newpass" | "passcreated";
+type View =
+  | "signin"
+  | "signup"
+  | "forgot"
+  | "otp"
+  | "newPassword"
+  | "passcreated";
 
 export default function Page() {
   const [view, setView] = useState<View>("signin");
