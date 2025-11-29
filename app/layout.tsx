@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
+import { Source_Sans_3 } from "next/font/google";
 import "./globals.css";
 
-
+// Configure the font
+const sourceSans = Source_Sans_3({
+  subsets: ["latin"],
+  weight: ["300", "400", "600", "700"],
+  variable: "--font-source-sans",
+});
 
 export const metadata: Metadata = {
   title: "Welcome to WORKHIVE!",
@@ -21,9 +27,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body>
-        {children}
-      </body>
+      <body className={sourceSans.variable}>{children}</body>
     </html>
   );
 }

@@ -2,8 +2,7 @@
 @import "tailwindcss";
 
 body {
-  @apply bg-[#101019] text-white min-h-screen;
-  font-family: system-ui, "Segoe UI",
-    sans-serif;
+  @apply bg-[#17181E] text-white min-h-screen;
+ font-family: var(--font-source-sans), system-ui, "Segoe UI", sans-serif;
 }
 

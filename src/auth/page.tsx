@@ -82,7 +82,7 @@ export default function Page() {
         <StatusModal
           icon="mail"
           title="Link Sent Successfully!"
-          message="Check your inbox. We've sent you an email with instructions to reset your password."
+          message="Check your inbox. We’ve sent you an email with instructions to reset your password."
           buttonLabel="Okay"
           onClose={() => {
             setShowLinkSentModal(false);
