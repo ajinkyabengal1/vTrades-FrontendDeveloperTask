@@ -43,22 +43,26 @@ export function NewPassForm({ onSuccess }: Props) {
   return (
     <div>
       <header className="mb-8">
-        <h2 className="text-2xl font-semibold mb-1">Create New Password</h2>
-        <p className="text-sm text-gray-400">
+        <h2 className="text-[32px] leading-[150%] font-semibold mb-1">
+          Create New Password
+        </h2>
+        <p className="text-sm font-normal text-[#DADADA] leading-[170%]">
           Choose a strong and secure password to keep your account safe.
         </p>
       </header>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="space-y-1">
-          <label className="text-sm text-gray-300">Password</label>
+          <label className="block w-full font-normal text-[12px] leading-[20px]">
+            Password
+          </label>
           <div className="relative">
             <input
               type={showPassword ? "text" : "password"}
-              className={`w-full rounded-md bg-[#181824] border px-4 py-3 pr-10 text-sm focus:outline-none focus:ring-2 ${
+              className={`w-full text-sm font-semibold rounded-md bg-[#1D1E26] border px-4 py-3 pr-10 focus:outline-none focus:ring-2 ${
                 error?.includes("match")
                   ? "border-red-500 focus:ring-red-500"
-                  : "border-gray-700 focus:ring-purple-500"
+                  : "border-[#30303D] focus:ring-[#8854C0]"
               }`}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -66,9 +70,9 @@ export function NewPassForm({ onSuccess }: Props) {
             <button
               type="button"
               onClick={() => setShowPassword((p) => !p)}
-              className="absolute inset-y-0 right-3 text-xs text-gray-400"
+              className="absolute inset-y-0 right-3 text-xs"
             >
-              <span className="material-symbols-outlined text-xs">
+              <span className="material-symbols-outlined text-[16.5px]!">
                 {showPassword ? "visibility" : "visibility_off"}
               </span>
             </button>
@@ -82,10 +86,10 @@ export function NewPassForm({ onSuccess }: Props) {
           <div className="relative">
             <input
               type={showConfirm ? "text" : "password"}
-              className={`w-full rounded-md bg-[#181824] border px-4 py-3 pr-10 text-sm focus:outline-none focus:ring-2 ${
+              className={`w-full text-sm font-semibold rounded-md bg-[#1D1E26] border px-4 py-3 pr-10 focus:outline-none focus:ring-2 ${
                 error?.includes("match")
                   ? "border-red-500 focus:ring-red-500"
-                  : "border-gray-700 focus:ring-purple-500"
+                  : "border-[#30303D] focus:ring-[#8854C0]"
               }`}
               value={confirm}
               onChange={(e) => setConfirm(e.target.value)}
@@ -93,9 +97,9 @@ export function NewPassForm({ onSuccess }: Props) {
             <button
               type="button"
               onClick={() => setShowConfirm((p) => !p)}
-              className="absolute inset-y-0 right-3 text-xs text-gray-400"
+              className="absolute inset-y-0 right-3 text-xs"
             >
-              <span className="material-symbols-outlined text-xs">
+              <span className="material-symbols-outlined text-[16.5px]!">
                 {showConfirm ? "visibility" : "visibility_off"}
               </span>
             </button>
@@ -111,7 +115,7 @@ export function NewPassForm({ onSuccess }: Props) {
         <button
           type="submit"
           disabled={loading}
-          className="w-full rounded-md bg-purple-600 py-3 text-sm font-semibold hover:bg-purple-700 disabled:opacity-60 disabled:cursor-not-allowed"
+          className="flex items-center justify-center w-full h-[50px] gap-2.5 rounded-[10px] bg-[#8854C0] px-6 py-[13px] text-base font-semibold leading-[150%] hover:bg-[#7a4ab0] disabled:opacity-60 disabled:cursor-not-allowed transition-all"
         >
           {loading ? "Updating..." : "Update Password"}
         </button>

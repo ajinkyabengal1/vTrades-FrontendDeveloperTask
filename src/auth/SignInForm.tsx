@@ -49,18 +49,22 @@ export function SignInForm({
   return (
     <div>
       <header className="mb-8">
-        <h2 className="text-2xl font-semibold mb-1">Sign In</h2>
-        <p className="text-sm text-gray-400">
+        <h2 className="text-[32px] leading-[150%] font-semibold mb-1">
+          Sign In
+        </h2>
+        <p className="text-sm font-normal text-[#DADADA] leading-[170%]">
           Manage your workspace seamlessly. Sign in to continue.
         </p>
       </header>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="space-y-1">
-          <label className="text-sm text-gray-300">Email Address</label>
+          <label className="block w-full font-normal text-[12px] leading-[20px]">
+            Email Address
+          </label>
           <input
             type="email"
-            className="w-full rounded-md bg-[#181824] border border-gray-700 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="w-full text-sm font-semibold rounded-md bg-[#1D1E26] border border-[#30303D] px-4 py-3  focus:outline-none focus:ring-2 focus:ring-[#8854C0]"
             placeholder="navinash@workhive.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -69,11 +73,13 @@ export function SignInForm({
         </div>
 
         <div className="space-y-1">
-          <label className="text-sm text-gray-300">Password</label>
+          <label className="block w-full font-normal text-[12px] leading-[20px]">
+            Password
+          </label>
           <div className="relative">
             <input
               type={showPassword ? "text" : "password"}
-              className="w-full rounded-md bg-[#181824] border border-gray-700 px-4 py-3 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full text-sm font-semibold rounded-md bg-[#1D1E26] border border-[#30303D] px-4 py-3 pr-10  focus:outline-none focus:ring-2 focus:ring-[#8854C0]"
               placeholder="********"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -82,20 +88,20 @@ export function SignInForm({
             <button
               type="button"
               onClick={() => setShowPassword((p) => !p)}
-              className="absolute inset-y-0 right-3 text-xs text-gray-400"
+              className="absolute inset-y-0 right-3 text-xs"
             >
-              <span className="material-symbols-outlined text-xs">
+              <span className="material-symbols-outlined text-[16.5px]!">
                 {showPassword ? "visibility" : "visibility_off"}
               </span>
             </button>
           </div>
         </div>
 
-        <div className="flex items-center justify-between text-xs text-gray-400">
-          <label className="flex items-center gap-2 cursor-pointer">
+        <div className="flex items-center justify-between ">
+          <label className="flex text-xs items-center gap-2 cursor-pointer leading-5">
             <input
               type="checkbox"
-              className="h-4 w-4 rounded border-gray-600 bg-[#181824]"
+              className="h-[18px] w-[18px] rounded border-[#DDDDDD]"
               checked={remember}
               onChange={(e) => setRemember(e.target.checked)}
             />
@@ -105,7 +111,7 @@ export function SignInForm({
           <button
             type="button"
             onClick={onForgotPassword}
-            className="text-purple-400 hover:underline"
+            className="text-xs font-semibold leading-5 text-[#8854C0] hover:underline"
           >
             Forgot Password?
           </button>
@@ -120,30 +126,34 @@ export function SignInForm({
         <button
           type="submit"
           disabled={loading}
-          className="w-full rounded-md bg-purple-600 py-3 text-sm font-semibold hover:bg-purple-700 disabled:opacity-60 disabled:cursor-not-allowed"
+          className="flex items-center justify-center w-full h-[50px] gap-2.5 rounded-[10px] bg-[#8854C0] px-6 py-[13px] text-base font-semibold leading-[150%] hover:bg-[#7a4ab0] disabled:opacity-60 disabled:cursor-not-allowed transition-all"
         >
           {loading ? "Signing In..." : "Sign In"}
         </button>
 
-        <div className="flex items-center gap-4 text-xs text-gray-500">
-          <span className="h-px flex-1 bg-gray-700" />
+        <div className="flex items-center gap-4 text-sm leading-[200%]">
+          <span className="h-px flex-1 bg-[#272727]" />
           or
-          <span className="h-px flex-1 bg-gray-700" />
+          <span className="h-px flex-1 bg-[#272727]" />
         </div>
 
         {/* social auth buttons */}
         <SocialButtons />
 
-        <p className="text-xs text-gray-400 text-center">
-          Don&apos;t have an account?{" "}
+        {/* signup button */}
+        <div className=" flex gap-1 justify-center text-center">
+          <span className="text-[#DADADA] text-xs leading-[200%] ">
+            Don&apos;t have an account?{" "}
+          </span>
+
           <button
             type="button"
             onClick={onSwitchToSignUp}
-            className="text-purple-400 hover:underline"
+            className="text-xs font-semibold lg:font-bold!  text-[#8854C0] hover:underline"
           >
             Sign Up
           </button>
-        </p>
+        </div>
       </form>
     </div>
   );

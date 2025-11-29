@@ -16,21 +16,39 @@ export function StatusModal({
   const isMail = icon === "mail";
 
   return (
-    <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/60">
-      <div className="bg-[#181824] rounded-2xl px-10 py-8 max-w-sm w-full text-center shadow-xl">
-        <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-green-600">
-          <span className="material-symbols-outlined text-2xl">
+    <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/60 px-4">
+      {/* Modal Box */}
+      <div
+        className="bg-[#181824] rounded-[10px] w-full max-w-[500px]
+                   shadow-xl text-center flex flex-col
+                   px-6 py-8 sm:px-10"
+      >
+        {/* Icon */}
+        <div className="mx-auto mb-4 flex h-[72px] w-[72px] sm:h-[100px] sm:w-[100px] items-center justify-center rounded-full bg-[#1D9200]">
+          <span className="material-symbols-outlined text-[49px]! ">
             {isMail ? "mail" : "verified"}
           </span>
         </div>
-        <h3 className="text-lg font-semibold mb-2">{title}</h3>
-        <p className="text-sm text-gray-300 mb-6">{message}</p>
-        <button
-          onClick={onClose}
-          className="rounded-md bg-purple-600 px-6 py-2 text-sm font-semibold hover:bg-purple-700"
-        >
-          {buttonLabel}
-        </button>
+
+        {/* Title */}
+        <h3 className="text-[18px] sm:text-[20px] leading-[150%] tracking-[-0.03em] font-semibold mb-2">
+          {title}
+        </h3>
+
+        {/* Message */}
+        <p className="text-sm leading-[150%] text-[#DADADA] mb-8 px-2 sm:px-0">
+          {message}
+        </p>
+
+        {/* Button */}
+        <div className="flex justify-end">
+          <button
+            onClick={onClose}
+            className="w-[116px] h-[50px] rounded-[10px] bg-[#8854C0] pl-[40px] pr-[30px] flex items-center justify-center gap-[10px] text-sm font-semibold hover:bg-[#7a4ab0] transition"
+          >
+            {buttonLabel}
+          </button>
+        </div>
       </div>
     </div>
   );

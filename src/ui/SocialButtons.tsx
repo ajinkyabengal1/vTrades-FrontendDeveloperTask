@@ -8,12 +8,12 @@ export function SocialButtons() {
   };
 
   return (
-    <div className="space-y-3">
+    <div className="flex flex-col items-center space-y-3">
       {/* Google Button */}
       <button
         type="button"
         onClick={handleGoogle}
-        className="flex w-full items-center justify-center gap-3 rounded-md border border-gray-700 bg-[#181824] py-3 text-sm hover:bg-[#202033] transition-colors"
+        className="flex w-[385px] h-[54px] items-center justify-center gap-3 rounded-[10px] border border-[#30303D] bg-[#1D1E26] text-sm hover:bg-[#202033] transition-colors"
       >
         <svg className="w-5 h-5" viewBox="0 0 24 24">
           <path
@@ -33,14 +33,15 @@ export function SocialButtons() {
             d="M12.245 4.814c1.748 0 3.322.602 4.566 1.787l3.435-3.418C17.962 1.11 15.362 0 12.245 0 7.525 0 3.392 2.763 1.424 6.453l4.085 3.132c.947-2.85 3.6-4.965 6.736-4.965z"
           />
         </svg>
-        <span>Sign In with Google</span>
+
+        <span className="text-sm leading-[150%]">Sign In with Google</span>
       </button>
 
       {/* Microsoft Button */}
       <button
         type="button"
         onClick={handleMicrosoft}
-        className="flex w-full items-center justify-center gap-3 rounded-md border border-gray-700 bg-[#181824] py-3 text-sm hover:bg-[#202033] transition-colors"
+        className="flex w-[385px] h-[54px] items-center justify-center gap-3 rounded-[10px] border border-[#30303D] bg-[#1D1E26] text-sm hover:bg-[#202033] transition-colors"
       >
         <svg className="w-5 h-5" viewBox="0 0 23 23">
           <path fill="#f3f3f3" d="M0 0h23v23H0z" />
@@ -49,7 +50,7 @@ export function SocialButtons() {
           <path fill="#05a6f0" d="M1 12h10v10H1z" />
           <path fill="#ffba08" d="M12 12h10v10H12z" />
         </svg>
-        <span>Sign In with Microsoft</span>
+        <span className="text-sm leading-[150%]">Sign In with Microsoft</span>
       </button>
     </div>
   );

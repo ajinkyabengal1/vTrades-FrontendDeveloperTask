@@ -33,8 +33,10 @@ export function ForgotPass({ onSuccess }: Props) {
   return (
     <div>
       <header className="mb-8">
-        <h2 className="text-2xl font-semibold mb-1">Forgot Your Password?</h2>
-        <p className="text-sm text-gray-400">
+        <h2 className="text-[32px] leading-[150%] font-semibold mb-1">
+          Forgot Your Password?
+        </h2>
+        <p className="text-sm font-normal text-[#DADADA] leading-[170%]">
           Don&apos;t worry! Enter your email address, and we&apos;ll send you a
           link to reset it.
         </p>
@@ -42,10 +44,12 @@ export function ForgotPass({ onSuccess }: Props) {
 
       <form className="space-y-6" onSubmit={handleSubmit}>
         <div className="space-y-1">
-          <label className="text-sm text-gray-300">Email Address</label>
+          <label className="block w-full font-normal text-[12px] leading-[20px]">
+            Email Address
+          </label>
           <input
             type="email"
-            className="w-full rounded-md bg-[#181824] border border-gray-700 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="w-full text-sm font-semibold rounded-md bg-[#1D1E26] border border-[#30303D] px-4 py-3  focus:outline-none focus:ring-2 focus:ring-[#8854C0]"
             placeholder="navinash@workhive.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -61,7 +65,7 @@ export function ForgotPass({ onSuccess }: Props) {
         <button
           type="submit"
           disabled={loading}
-          className="w-full rounded-md bg-purple-600 py-3 text-sm font-semibold hover:bg-purple-700 disabled:opacity-60 disabled:cursor-not-allowed"
+          className="flex items-center justify-center w-full h-[50px] gap-2.5 rounded-[10px] bg-[#8854C0] px-6 py-[13px] text-base font-semibold leading-[150%] hover:bg-[#7a4ab0] disabled:opacity-60 disabled:cursor-not-allowed transition-all"
         >
           {loading ? "Sending..." : "Submit"}
         </button>
