@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react";
-import { SocialButtons } from "../ui/SocialButtons";
+import { SocialButtons } from "../components/ui/SocialButtons";
 
 interface Props {
   onSwitchToSignIn: () => void;

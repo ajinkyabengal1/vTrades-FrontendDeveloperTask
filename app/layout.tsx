@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Source_Sans_3 } from "next/font/google";
+import { Providers } from "./providers";
+
 import "./globals.css";
 
 // Configure the font
@@ -27,7 +29,10 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className={sourceSans.variable}>{children}</body>
+      <body className={sourceSans.variable}>
+        {" "}
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }

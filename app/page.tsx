@@ -1,9 +1,11 @@
 "use client";
 
-import { useState } from "react";
-import { HomeLayout } from "@/src/layout/HomeLayout";
+import { useState, useEffect } from "react";
+import { useSession } from "next-auth/react";
+import type { SignInResponse } from "next-auth/react";
+import { HomeLayout } from "@/src/components/layout/HomeLayout";
 import { SignInForm } from "@/src/auth/SignInForm";
-import { StatusModal } from "@/src/ui/StatusModal";
+import { StatusModal } from "@/src/components/ui/StatusModal";
 import { ForgotPass } from "@/src/auth/ForgotPass";
 import { OtpForm } from "@/src/auth/OtpForm";
 import { NewPassForm } from "@/src/auth/NewPassForm";
@@ -24,6 +26,52 @@ export default function Page() {
   const [showPasswordCreatedModal, setShowPasswordCreatedModal] =
     useState(false);
   const [showSignUpSuccessModal, setShowSignUpSuccessModal] = useState(false);
+  const [signInSuccessMessage, setSignInSuccessMessage] = useState(
+    "You have signed in with the demo credentials."
+  );
+
+  const { data: session, status } = useSession();
+
+  // function to handle sign in success
+  const handleSignInSuccess = (data?: SignInResponse | undefined) => {
+    let provider = "";
+
+    console.log("Sign-in data:", data);
+
+    provider = localStorage.getItem("social-signin-pending") || "";
+
+    if (provider === "google") {
+      setSignInSuccessMessage("Logged in successfully with Google.");
+    } else {
+      setSignInSuccessMessage("You have signed in successfully.");
+    }
+
+    setShowSignInSuccessModal(true);
+
+    localStorage.removeItem("social-signin-pending");
+  };
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      const pending = localStorage.getItem("social-signin-pending");
+      if (pending && status === "authenticated") {
+        console.log("Session after social sign-in:", session);
+
+        setTimeout(() => {
+          if (pending === "google") {
+            setSignInSuccessMessage("Logged in successfully with Google.");
+          } else {
+            setSignInSuccessMessage("You have signed in successfully.");
+          }
+          setShowSignInSuccessModal(true);
+          localStorage.removeItem("social-signin-pending");
+        }, 0);
+      }
+    } catch {
+      console.log("No pending social sign-in.");
+    }
+  }, [status, session]);
 
   return (
     <HomeLayout>
@@ -31,7 +79,7 @@ export default function Page() {
         <SignInForm
           onForgotPassword={() => setView("forgot")}
           onSwitchToSignUp={() => setView("signup")}
-          onSuccess={() => setShowSignInSuccessModal(true)}
+          onSuccess={handleSignInSuccess}
         />
       )}
 
@@ -71,7 +119,7 @@ export default function Page() {
         <StatusModal
           icon="success"
           title="Signed In Successfully!"
-          message="You have signed in with the demo credentials."
+          message={signInSuccessMessage}
           buttonLabel="Continue"
           onClose={() => setShowSignInSuccessModal(false)}
         />

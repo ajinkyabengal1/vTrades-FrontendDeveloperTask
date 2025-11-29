@@ -1,10 +1,11 @@
 import { FormEvent, useState } from "react";
-import { SocialButtons } from "../ui/SocialButtons";
+import type { SignInResponse } from "next-auth/react";
+import { SocialButtons } from "../components/ui/SocialButtons";
 
 interface Props {
   onForgotPassword: () => void;
   onSwitchToSignUp: () => void;
-  onSuccess: () => void;
+  onSuccess: (data?: SignInResponse | undefined) => void;
 }
 
 // Dummy credentials for login
@@ -138,7 +139,7 @@ export function SignInForm({
         </div>
 
         {/* social auth buttons */}
-        <SocialButtons />
+        <SocialButtons onSuccess={onSuccess} />
 
         {/* signup button */}
         <div className=" flex gap-1 justify-center text-center">

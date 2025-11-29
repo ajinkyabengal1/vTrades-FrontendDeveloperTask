@@ -1,6 +1,45 @@
-export function SocialButtons() {
-  const handleGoogle = () => {
-    alert("Google Sign-In clicked.");
+"use client";
+
+import { signIn } from "next-auth/react";
+import type { SignInResponse } from "next-auth/react";
+
+interface Props {
+  onSuccess?: (data?: SignInResponse | undefined) => void;
+}
+
+export function SocialButtons({ onSuccess }: Props) {
+  const handleGoogle = async () => {
+    localStorage.setItem("social-signin-pending", "google");
+
+    const result = (await signIn("google", {
+      redirect: false,
+      callbackUrl: "/",
+    })) as SignInResponse | undefined;
+
+    console.log("Google sign-in result:", result);
+    try {
+      const keys = result ? Object.keys(result) : [];
+      console.log("Google sign-in result keys:", keys);
+    } catch {
+      console.log("No result from Google sign-in.");
+    }
+
+    if (onSuccess && result?.ok) {
+      onSuccess(result);
+
+      localStorage.removeItem("social-signin-pending");
+      return;
+    }
+
+    // If a URL is returned
+    if (result?.url) {
+      window.location.href = result.url;
+      return;
+    }
+
+    if (!result) {
+      signIn("google");
+    }
   };
 
   const handleMicrosoft = () => {
